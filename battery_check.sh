@@ -1,19 +1,19 @@
 #!/bin/bash
 
-# Função para verificar o estado da bateria
+# Function to check battery status
 check_battery() {
-  # Verifica o estado da bateria
+  # Check the battery status
   state=$(cat /sys/class/power_supply/BAT1/status)
-  
-  # Se o estado for "Discharging", emite um som
+
+  # If the status is "Discharging", it makes a sound
   if [ "$state" == "Discharging" ]; then
-    paplay /home/jschen/Downloads/Orion.ogg
+    paplay ./assets/sounds/Orion.ogg
   fi
 }
 
-# Loop infinito para verificar a bateria continuamente
+# Infinite loop to check battery continuously
 while true; do
   check_battery
-  # Aguarda 5 segundos antes de verificar novamente
+  # Wait 5 seconds before checking again
   sleep 5
 done
